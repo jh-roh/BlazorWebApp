@@ -1,3 +1,6 @@
+using BlazorWebApp.Server.Models.SalesSimpleDBContext;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,6 +10,8 @@ builder.Services.AddRazorPages();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<SalesSimpleContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("SalesSimpleDBEntities")));
+
 
 var app = builder.Build();
 

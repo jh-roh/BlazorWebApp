@@ -24,3 +24,9 @@ namespace BlazorWebApp.Shared
 // git rm -r --cached BlazorWebApp.Server/obj/Debug/net8.0/BlazorWebApp.Server.AssemblyInfoInputs.cache
 // git rm -r --cached BlazorWebApp.Shared/obj/Debug/net8.0/BlazorWebApp.Shared.AssemblyInfo.cs
 // git rm -r --cached BlazorWebApp.Shared/obj/Debug/net8.0/BlazorWebApp.Shared.AssemblyInfoInputs.cache
+
+
+//.gitignore가 제대로 동작하지 않을 경우
+//git rm -r --cached .
+//git add .
+//git commit -m "fixed untracked files"
