@@ -11,3 +11,16 @@ namespace BlazorWebApp.Server
         public string? Summary { get; set; }
     }
 }
+
+
+// git rm -r --cached .vs/BlazorWebApp/DesignTimeBuild/.dtbcache.v2
+// git rm -r --cached .vs/BlazorWebApp/v17/.suo
+// git rm -r --cached .vs/BlazorWebApp/v17/DocumentLayout.json
+// git rm -r --cached .vs/ProjectEvaluation/blazorwebapp.metadata.v7.bin
+// git rm -r --cached .vs/ProjectEvaluation/blazorwebapp.projects.v7.bin
+// git rm -r --cached BlazorWebApp.Client/obj/Debug/net8.0/BlazorWebApp.Client.AssemblyInfo.cs
+// git rm -r --cached BlazorWebApp.Client/obj/Debug/net8.0/BlazorWebApp.Client.AssemblyInfoInputs.cache
+// git rm -r --cached BlazorWebApp.Server/obj/Debug/net8.0/BlazorWebApp.Server.AssemblyInfo.cs
+// git rm -r --cached BlazorWebApp.Server/obj/Debug/net8.0/BlazorWebApp.Server.AssemblyInfoInputs.cache
+// git rm -r --cached BlazorWebApp.Shared/obj/Debug/net8.0/BlazorWebApp.Shared.AssemblyInfo.cs
+// git rm -r --cached BlazorWebApp.Shared/obj/Debug/net8.0/BlazorWebApp.Shared.AssemblyInfoInputs.cache
