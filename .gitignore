@@ -1,0 +1,9 @@
+BlazorWebApp.Client/bin/
+BlazorWebApp.Server/bin/
+BlazorWebApp.Shared/bin/
+
+BlazorWebApp.Client/obj/
+BlazorWebApp.Server/obj/
+BlazorWebApp.Shared/obj/
+
+.vs/
