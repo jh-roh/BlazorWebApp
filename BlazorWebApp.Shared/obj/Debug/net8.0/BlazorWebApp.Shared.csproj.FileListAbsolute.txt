@@ -1,0 +1,11 @@
+D:\TFS\BlazorWebApp\BlazorWebApp\BlazorWebApp.Shared\bin\Debug\net8.0\BlazorWebApp.Shared.deps.json
+D:\TFS\BlazorWebApp\BlazorWebApp\BlazorWebApp.Shared\bin\Debug\net8.0\BlazorWebApp.Shared.dll
+D:\TFS\BlazorWebApp\BlazorWebApp\BlazorWebApp.Shared\bin\Debug\net8.0\BlazorWebApp.Shared.pdb
+D:\TFS\BlazorWebApp\BlazorWebApp\BlazorWebApp.Shared\obj\Debug\net8.0\BlazorWebApp.Shared.GeneratedMSBuildEditorConfig.editorconfig
+D:\TFS\BlazorWebApp\BlazorWebApp\BlazorWebApp.Shared\obj\Debug\net8.0\BlazorWebApp.Shared.AssemblyInfoInputs.cache
+D:\TFS\BlazorWebApp\BlazorWebApp\BlazorWebApp.Shared\obj\Debug\net8.0\BlazorWebApp.Shared.AssemblyInfo.cs
+D:\TFS\BlazorWebApp\BlazorWebApp\BlazorWebApp.Shared\obj\Debug\net8.0\BlazorWebApp.Shared.csproj.CoreCompileInputs.cache
+D:\TFS\BlazorWebApp\BlazorWebApp\BlazorWebApp.Shared\obj\Debug\net8.0\BlazorWebApp.Shared.dll
+D:\TFS\BlazorWebApp\BlazorWebApp\BlazorWebApp.Shared\obj\Debug\net8.0\refint\BlazorWebApp.Shared.dll
+D:\TFS\BlazorWebApp\BlazorWebApp\BlazorWebApp.Shared\obj\Debug\net8.0\BlazorWebApp.Shared.pdb
+D:\TFS\BlazorWebApp\BlazorWebApp\BlazorWebApp.Shared\obj\Debug\net8.0\ref\BlazorWebApp.Shared.dll
