@@ -5,9 +5,9 @@ VisualStudioVersion = 17.9.34714.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWebApp.Server", "BlazorWebApp.Server\BlazorWebApp.Server.csproj", "{DC5B4BCE-7DEC-47C2-A4F0-6A4D73D5EB18}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWebApp.Client", "BlazorWebApp.Client\BlazorWebApp.Client.csproj", "{A91A41D8-206D-4864-9701-8B93BE5CFE78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWebApp.Client", "BlazorWebApp.Client\BlazorWebApp.Client.csproj", "{A91A41D8-206D-4864-9701-8B93BE5CFE78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWebApp.Shared", "BlazorWebApp.Shared\BlazorWebApp.Shared.csproj", "{C7FF6871-8C0B-411E-B286-758C8460472A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWebApp.Shared", "BlazorWebApp.Shared\BlazorWebApp.Shared.csproj", "{C7FF6871-8C0B-411E-B286-758C8460472A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
