@@ -1,7 +1,9 @@
+BlazorWebApp.BlazorServer/bin/
 BlazorWebApp.Client/bin/
 BlazorWebApp.Server/bin/
 BlazorWebApp.Shared/bin/
 
+BlazorWebApp.BlazorServer/obj/
 BlazorWebApp.Client/obj/
 BlazorWebApp.Server/obj/
 BlazorWebApp.Shared/obj/
