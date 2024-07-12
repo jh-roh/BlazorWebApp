@@ -1,4 +1,13 @@
-.page {
+.bg-purple {
+    background-color: var(--color-purple)
+}
+
+.footer {
+    background-color:var(--bs-gray-200);
+}
+
+
+/*.page {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -68,3 +77,4 @@
         padding-right: 1.5rem !important;
     }
 }
+*/

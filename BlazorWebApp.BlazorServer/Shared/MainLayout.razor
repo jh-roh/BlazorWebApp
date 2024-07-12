@@ -1,7 +1,17 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
+<div class="page d-flex flex-column">
+    <div class="container-fluid bg-purple">
+        <TopNavBar/>
+    </div>
+    <div class="container-fluid flex-grow-1">
+        @Body
+    </div>
+
+    <footer class="fixed-bottom text-center d-flex align-items-center justify-content-center footer">
+        <p class="mb-0 py-2">Blog App Built using Blazor Server by <strong>Roh Junho</strong></p>
+     </footer>
+   @*  <div class="sidebar">
         <NavMenu />
     </div>
 
@@ -13,5 +23,5 @@
         <div class="content px-4">
             @Body
         </div>
-    </div>
+    </div> *@
 </div>
