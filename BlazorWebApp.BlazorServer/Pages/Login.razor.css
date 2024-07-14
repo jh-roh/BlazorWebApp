@@ -1,0 +1,33 @@
+﻿.overlay {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 2000;
+}
+
+.loading-wrapper {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 2001;
+}
+
+.font-small {
+    font-size: 0.8rem;
+}
+
+.font-medium {
+    font-size: 1.2rem;
+}
+
+.font-large {
+    font-size: 1.5rem;
+}
+
+.font-smal {
+    font-size: 1.5rem;
+}
