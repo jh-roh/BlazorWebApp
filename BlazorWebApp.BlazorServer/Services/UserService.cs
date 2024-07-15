@@ -1,4 +1,5 @@
 ﻿using BlazorWebApp.BlazorServer.Data;
+using BlazorWebApp.BlazorServer.Data.Entities;
 using BlazorWebApp.BlazorServer.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
