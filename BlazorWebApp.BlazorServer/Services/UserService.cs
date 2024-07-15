@@ -17,7 +17,7 @@ namespace BlazorWebApp.BlazorServer.Services
         }
 
 
-        public async Task LoginAsync(LoginModel model)
+        public async Task<LoggedInUser?> LoginAsync(LoginModel model)
         {
             var dbUser = await _context.Users
                                        .AsNoTracking()
@@ -25,10 +25,12 @@ namespace BlazorWebApp.BlazorServer.Services
 
             if(dbUser is not null)
             {
+                return new LoggedInUser(dbUser.Id, $"{dbUser.FirstName} {dbUser.LastName}".Trim());
                 //Login success
             }
             else
             {
+                return null;
                 //Login failed
             }
                                        

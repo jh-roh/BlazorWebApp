@@ -29,6 +29,14 @@ namespace BlazorWebApp.BlazorServer.Models
         {
             return HashCode.Combine(UserId, DisplayName);
         }
+
+        public void Deconstruct(out int userId, out string displayName)
+        {
+            userId = UserId;
+            displayName = DisplayName;
+        }
+
+        public override string ToString() => $"LoggedInUser {{ UserId = {UserId}, DisplayName = {DisplayName} }}";
     }
 }
 
