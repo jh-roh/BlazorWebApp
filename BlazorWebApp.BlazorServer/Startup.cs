@@ -1,6 +1,9 @@
+using BlazorWebApp.BlazorServer.Authentication;
 using BlazorWebApp.BlazorServer.Data;
+using BlazorWebApp.BlazorServer.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +33,11 @@ namespace BlazorWebApp.BlazorServer
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddDbContext<BlogContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Blog")));
+
+            services.AddTransient<UserService>();
+            services.AddScoped<AuthenticationService>();
+            services.AddScoped<BlogAuthenticationProvider>();
+            services.AddScoped<AuthenticationStateProvider>(serviceProvider => serviceProvider.GetRequiredService<BlogAuthenticationProvider>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

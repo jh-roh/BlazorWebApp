@@ -1,4 +1,5 @@
-﻿
+﻿@inject BlogAuthenticationProvider AuthenticationProvider
+@inject NavigationManager NavigationManager
 <div class="container">
     <header class="d-flex justify-content-center justify-content-md-between py-3 flex-wrap">
         <NavLink href="/" class="text-light text-decoration-none nav-link-header">Blazaing Blog</NavLink>
@@ -12,12 +13,25 @@
 
         </ul>
         <div class="text-right">
-            <NavLink href="/login" class="btn btn-primary">Login</NavLink>
+            <AuthorizeView>
+                <Authorizing>Checking auth state</Authorizing>
+                <Authorized>
+                    <NavLink  class="btn btn-light disabled">@context.User?.Identity?.Name</NavLink>
+                    <button type="button" class="btn btn-primary" @onclick="LogoutAsync">Logout</button>
+                </Authorized>
+                <NotAuthorized>
+                    <NavLink href="/login" class="btn btn-primary">Login</NavLink>
+                </NotAuthorized>
+            </AuthorizeView>
         </div>
     </header>
 
   
 </div>
 @code {
-
+    public async Task LogoutAsync()
+    {
+        await AuthenticationProvider.LogoutAsync();
+        NavigationManager.NavigateTo("/");
+    }
 }

@@ -3,6 +3,8 @@
 
 @inject NavigationManager NavigationManager
 
+@inject BlogAuthenticationProvider AuthenticationProvider
+
 @if(_isProcessing)
 {
     <div class="overlay position-fixed"></div>
@@ -52,9 +54,28 @@
         _isProcessing = true;
         try
         {
-            await Task.Delay(5000);
-            // throw new Exception("text exception");
-            NavigationManager.NavigateTo("/");
+            _error= await AuthenticationProvider.LoginAsync(_model);
+
+            if(!string.IsNullOrWhiteSpace(_error))
+            {
+                _isProcessing = false;
+            }
+            else
+            {
+                var loggedInUser = AuthenticationProvider.LoggedInUser;
+
+                if(loggedInUser.IsEmpty())
+                {
+                    _error = "Could not login. Please try again.";
+                }
+                else
+                {
+                    //successful login
+                    NavigationManager.NavigateTo("/");
+                }
+            }
+
+
         }
         catch(Exception ex)
         {

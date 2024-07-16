@@ -2,11 +2,11 @@
 
 namespace BlazorWebApp.BlazorServer.Models
 {
-    public readonly struct LoggedInUser
+    public struct LoggedInUser
     {
-        public int UserId { get; }
+        public int UserId { get; set; }
 
-        public string DisplayName { get; }
+        public string DisplayName { get; set; }
 
         public LoggedInUser(int userId, string displayName)
         {
@@ -35,6 +35,8 @@ namespace BlazorWebApp.BlazorServer.Models
             userId = UserId;
             displayName = DisplayName;
         }
+
+        public readonly bool IsEmpty() => UserId == 0 && string.IsNullOrWhiteSpace(DisplayName);
 
         public override string ToString() => $"LoggedInUser {{ UserId = {UserId}, DisplayName = {DisplayName} }}";
     }
