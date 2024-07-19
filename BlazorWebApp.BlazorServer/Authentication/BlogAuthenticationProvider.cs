@@ -39,8 +39,15 @@ namespace BlazorWebApp.BlazorServer.Authentication
             {
                 var userId = authState.User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var displayName = authState.User.FindFirstValue(ClaimTypes.Name);
-                LoggedInUser = new(int.Parse(userId), displayName);
-
+                
+                if(userId is not null && displayName is not null)
+                {
+                    LoggedInUser = new(int.Parse(userId), displayName);
+                }
+                else
+                {
+                    LoggedInUser = new LoggedInUser(0, string.Empty);
+                }
             }
 
         }
@@ -76,7 +83,6 @@ namespace BlazorWebApp.BlazorServer.Authentication
         public async Task LogoutAsync()
         {
             await _authenticationService.RemoveUserFromBrowserStorageAsync();
-            LoggedInUser = new LoggedInUser(0, string.Empty);
             NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(new ClaimsPrincipal())));
         }
 

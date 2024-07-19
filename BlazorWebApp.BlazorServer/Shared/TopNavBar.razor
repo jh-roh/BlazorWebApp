@@ -1,16 +1,17 @@
 ﻿@inject BlogAuthenticationProvider AuthenticationProvider
 @inject NavigationManager NavigationManager
 <div class="container">
-    <header class="d-flex justify-content-center justify-content-md-between py-3 flex-wrap">
+    <header class="d-flex justify-content-center justify-content-md-between py-3 flex-wrap mb-4 border-white border-bottom border-5">
         <NavLink href="/" class="text-light text-decoration-none nav-link-header">Blazaing Blog</NavLink>
 
         <ul class="nav">
             <li><NavLink href="/" class="text-light nav-link">Home</NavLink></li>
             <li><NavLink href="/About" class="text-light nav-link">About</NavLink></li>
-            <li><NavLink href="/manage-categories" class="text-light nav-link">Manage Categories</NavLink></li>
-            <li><NavLink href="/manage-blogs" class="text-light nav-link">Manage Blogs</NavLink></li>
-
-
+            
+            <AuthorizeView>
+                <li><NavLink href="/admin/manage-categories" class="text-light nav-link">Manage Categories</NavLink></li>
+                <li><NavLink href="/admin/manage-blogs" class="text-light nav-link">Manage Blogs</NavLink></li>
+            </AuthorizeView>
         </ul>
         <div class="text-right">
             <AuthorizeView>

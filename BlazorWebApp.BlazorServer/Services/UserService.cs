@@ -1,7 +1,7 @@
 ﻿using BlazorWebApp.BlazorServer.Data;
-using BlazorWebApp.BlazorServer.Data.Entities;
 using BlazorWebApp.BlazorServer.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -37,5 +37,4 @@ namespace BlazorWebApp.BlazorServer.Services
         }
 
     }
-
 }
