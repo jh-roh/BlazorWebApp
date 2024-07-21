@@ -54,3 +54,7 @@ a, .btn-link {
     --color-purple: #3a0647;
     --bs-gray-200 : #f7f7f7;
 }
+
+.bg-purple {
+    background-color: var(--color-purple);
+}

@@ -54,6 +54,19 @@
         
 </div>
 
+<dialog open="true">
+    <SaveCategoryForm />
+</dialog>
+
+<style type="text/css">
+    dialog {
+        padding : 0;
+        border: 2px solid var(--color-purple);
+
+    }
+</style>
+
+
 @code {
     private bool _loading = false;
     private IEnumerable<Category> _categories = null;
