@@ -1,19 +1,68 @@
-﻿<EditForm Model="_categoryModel">
+﻿@using BlazorWebApp.BlazorServer.Models
+@inject CategoryService CategoryService
+
+<EditForm Model="_categoryModel" OnValidSubmit="SaveCategoryAsync">
     <DataAnnotationsValidator/>
     <div class="card border-0">
         <div class="card-header bg-purple text-white d-flex justify-content-between align-items-center" style="min-width:250px;">
             <h4>Save Category</h4>
-            <button type="button" class="btn btn-sm btn-danger">X</button>
+            <button type="button" class="btn btn-sm btn-danger" @onclick="CloseFormAsync">X</button>
         </div>
         <div class="card-body">
-
+            <div class="mb-3">
+                <label class="form-check-label">Name: </label>
+                <InputText @bind-Value="_categoryModel.Name" class="form-control" placeholder="Category Name" @onblur="OnNameBlur"></InputText>
+                <ValidationMessage For="() => _categoryModel.Name"></ValidationMessage>
+            </div>
+            <div class="mb-3">
+                <label class="form-check-label">Slug: </label>
+                <InputText @bind-Value="_categoryModel.Slug" class="form-control" placeholder="Category Slug"></InputText>
+                <ValidationMessage For="() => _categoryModel.Slug"></ValidationMessage>
+            </div>
         </div>
         <div class="card-footer d-flex justify-content-between align-items-center">
-            <button type="button" class="btn btn-sm btn-secondary" >Cancel</button>
+            <button type="button" class="btn btn-sm btn-secondary" @onclick="CloseFormAsync">Cancel</button>
             <button type="submit" class="btn btn-sm btn-primary">Save</button>
         </div>
     </div>
 </EditForm>
 @code {
     private Category _categoryModel = new();
+
+    [Parameter]
+    public EventCallback<MethodResult> OnSaveCategory{ get; set; }
+
+    [Parameter]
+
+    public EventCallback OnCloseCategory{ get; set; }
+
+    private async Task SaveCategoryAsync()
+    {
+        MethodResult result = await CategoryService.SaveCategoryAsync(_categoryModel);
+
+        if(result.Status)
+        {
+            _categoryModel = new();
+        }
+
+        await OnSaveCategory.InvokeAsync(result);
+
+
+        // Save category
+    }
+    private void OnNameBlur(FocusEventArgs e)
+    {
+        if(!string.IsNullOrWhiteSpace(_categoryModel.Name))
+        {
+            _categoryModel.Slug = _categoryModel.Name.Slugify();
+        }
+    }
+
+    private async Task CloseFormAsync()
+    {
+        _categoryModel = new();
+        await OnCloseCategory.InvokeAsync();
+
+    }
+    
 }

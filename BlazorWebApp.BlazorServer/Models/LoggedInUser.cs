@@ -2,7 +2,7 @@
 
 namespace BlazorWebApp.BlazorServer.Models
 {
-    public struct LoggedInUser
+    public struct LoggedInUser 
     {
         public int UserId { get; set; }
 
