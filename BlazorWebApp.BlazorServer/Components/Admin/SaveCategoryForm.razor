@@ -4,8 +4,8 @@
 <EditForm Model="_categoryModel" OnValidSubmit="SaveCategoryAsync">
     <DataAnnotationsValidator/>
     <div class="card border-0">
-        <div class="card-header bg-purple text-white d-flex justify-content-between align-items-center" style="min-width:250px;">
-            <h4>Save Category</h4>
+        <div class="card-header bg-purple text-white d-flex justify-content-between align-items-center" style="min-width:300px;">
+            <h4>@(_categoryModel.Id > 0 ? "Edit" : "Add New") Category</h4>
             <button type="button" class="btn btn-sm btn-danger" @onclick="CloseFormAsync">X</button>
         </div>
         <div class="card-body">
@@ -16,7 +16,7 @@
             </div>
             <div class="mb-3">
                 <label class="form-check-label">Slug: </label>
-                <InputText @bind-Value="_categoryModel.Slug" class="form-control" placeholder="Category Slug"></InputText>
+                <InputText @bind-Value="_categoryModel.Slug" class="form-control" placeholder="Category Slug" disabled="@(_categoryModel.Id > 0)"></InputText>
                 <ValidationMessage For="() => _categoryModel.Slug"></ValidationMessage>
             </div>
         </div>
@@ -27,6 +27,9 @@
     </div>
 </EditForm>
 @code {
+    [Parameter]
+    public Category? Category { get; set; }
+
     private Category _categoryModel = new();
 
     [Parameter]
@@ -35,6 +38,12 @@
     [Parameter]
 
     public EventCallback OnCloseCategory{ get; set; }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        _categoryModel = Category;
+    }
 
     private async Task SaveCategoryAsync()
     {
@@ -52,7 +61,7 @@
     }
     private void OnNameBlur(FocusEventArgs e)
     {
-        if(!string.IsNullOrWhiteSpace(_categoryModel.Name))
+        if(_categoryModel.Id == 0 && !string.IsNullOrWhiteSpace(_categoryModel.Name))
         {
             _categoryModel.Slug = _categoryModel.Name.Slugify();
         }

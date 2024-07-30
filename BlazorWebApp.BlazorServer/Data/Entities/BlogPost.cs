@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlazorWebApp.BlazorServer.Data.Entities
 {
@@ -30,6 +31,19 @@ namespace BlazorWebApp.BlazorServer.Data.Entities
         public bool IsPublished { get; set; }
 
         public DateTime? PublicshedOn { get; set; }
+
+        public DateTime? ModifiedOn { get; set; }
+
+        public virtual Category Category { get; set; }
+
+        public virtual User User { get; set; }
+
+        [NotMapped]
+        public String CategoryName => Category?.Name;
+
+    
+    
+        
     }
 
 }

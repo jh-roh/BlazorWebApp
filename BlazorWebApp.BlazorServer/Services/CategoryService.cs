@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace BlazorWebApp.BlazorServer.Services
 {
+
     public class CategoryService
     {
 

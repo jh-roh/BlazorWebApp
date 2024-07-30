@@ -35,7 +35,9 @@ namespace BlazorWebApp.BlazorServer
             services.AddDbContext<BlogContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Blog")));
 
             services.AddTransient<UserService>()
-                    .AddTransient<CategoryService>();
+                    .AddTransient<CategoryService>()
+                    .AddTransient<BlogPostService>();
+
             services.AddScoped<AuthenticationService>();
             services.AddScoped<BlogAuthenticationProvider>();
             services.AddScoped<AuthenticationStateProvider>(serviceProvider => serviceProvider.GetRequiredService<BlogAuthenticationProvider>());

@@ -14,6 +14,8 @@ namespace BlazorWebApp.BlazorServer.Data.Entities
         [Required, MaxLength(125)]
 
         public string Slug { get; set; }
+
+        public Category Clone() => (Category)this.MemberwiseClone();
     }
 
 }
