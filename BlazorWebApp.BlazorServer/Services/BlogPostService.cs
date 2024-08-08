@@ -17,5 +17,11 @@ namespace BlazorWebApp.BlazorServer.Services
 
         public async Task<IEnumerable<BlogPost>> GetBlogsAsync() =>
             await _context.BlogPosts.AsNoTracking().ToListAsync();
+
+
+        public async Task SaveAsync(BlogPost post)
+        {
+
+        }
     }
 }

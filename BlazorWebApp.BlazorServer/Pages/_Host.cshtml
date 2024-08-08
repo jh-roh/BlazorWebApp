@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link href="css/site.css" rel="stylesheet" />
     <link href="BlazorWebApp.BlazorServer.styles.css" rel="stylesheet" />
+    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
 </head>
 <body>
     <component type="typeof(App)" render-mode="Server" />
@@ -30,6 +32,9 @@
         <a class="dismiss">🗙</a>
     </div>
 
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="_content/Blazored.TextEditor/quill-blot-formatter.min.js"></script>
+    <script src="_content/Blazored.TextEditor/Blazored-BlazorQuill.js"></script>
     <script src="~/js/common.js"></script>
     <script src="_framework/blazor.server.js"></script>
 </body>

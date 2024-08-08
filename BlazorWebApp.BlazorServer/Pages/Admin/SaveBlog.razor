@@ -1,6 +1,6 @@
 ﻿@page "/admin/manage-blogs/new"
 @page "/admin/manage-blogs/edit/{urlBlogId:int?}"
-
+@using Blazored.TextEditor
 @inject CategoryService CategoryService
 
 <div class="container">
@@ -11,7 +11,7 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12" >
             <EditForm Model="model">
                 <DataAnnotationsValidator/>
                 <div class="mb-3">
@@ -28,13 +28,112 @@
                     <label class="col-form-label">Category: </label>
                     <InputSelect @bind-Value="model.CategoryId" class="form-control">
                         <option value="">Select Category</option>
+
+                        @foreach(var category in categories)
+                        {
+                            <option value="@category.Id">@category.Name</option>
+                        }
                     </InputSelect>
                     <ValidationMessage For="() => model.CategoryId" />
                 </div>
+
+                <div class="mb-3">
+                    <label class="col-form-label">Introduction: </label>
+                    <InputText @bind-Value="model.Introduction" class="form-control" placeholder="Enter introduction"></InputText>
+                    <ValidationMessage For="() => model.Introduction"></ValidationMessage>
+                </div>
+
+                <div class="mb-3">
+                    <label class="col-form-label">Content: </label>
+                    @* <InputTextArea @bind-Value="model.Content" class="form-control" placeholder="Enter content"></InputTextArea> *@
+                    <BlazoredTextEditor @ref="@QuillHtml">
+                        <ToolbarContent>
+                            <select class="ql-header">
+                                <option selected=""></option>
+                                <option value="1"></option>
+                                <option value="2"></option>
+                                <option value="3"></option>
+                                <option value="4"></option>
+                                <option value="5"></option>
+                            </select>
+                            <span class="ql-formats">
+                                <button class="ql-bold"></button>
+                                <button class="ql-italic"></button>
+                                <button class="ql-underline"></button>
+                                <button class="ql-strike"></button>
+                            </span>
+                            <span class="ql-formats">
+                                <select class="ql-color"></select>
+                                <select class="ql-background"></select>
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-list" value="ordered"></button>
+                                <button class="ql-list" value="bullet"></button>
+                            </span>
+                            <span class="ql-formats">
+                                <button class="ql-link"></button>
+                            </span>
+                        </ToolbarContent>
+                        <EditorContent>
+                            @((MarkupString)model.Content)
+                        </EditorContent>
+                    </BlazoredTextEditor>
+
+                    <ValidationMessage For="() => model.Content"></ValidationMessage>
+                </div>
+
+                <div class="container mt-5">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch1" @bind-value="model.IsPublished" />
+                        
+                        <label class="custom-control-label" for="customSwitch1">@(model.IsPublished == true ? "Published" : "Not published")</label>
+                    </div>
+                </div>
+                <hr/>
+                <div class="mb-3 d-flex justify-content-between">
+                    <button type="reset" class="btn btn-danger">X Cancel</button>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+
+                <hr/>
+
             </EditForm>
+
+            
         </div>
     </div>
 </div>
+
+<style type="text/css">
+    .custom-control-label::before {
+      left: -2.25rem;
+      width: 2rem;
+      height: 1rem;
+      pointer-events: all;
+      border-radius: 1rem;
+    }
+
+    .custom-control-label::after {
+      top: calc(0.25rem + 2px);
+      left: calc(-2.25rem + 2px);
+      width: calc(1rem - 4px);
+      height: calc(1rem - 4px);
+      background-color: #adb5bd;
+      border-radius: 1rem;
+      transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, transform 0.15s ease-in-out;
+    }
+
+    .custom-control-input:checked~.custom-control-label::after {
+      background-color: #fff;
+      transform: translateX(1rem);
+    }
+
+    .custom-control-input:checked~.custom-control-label::before {
+      color: #fff;
+      border-color: #80bdff;
+      background-color: #007bff;
+    }
+</style>
 
 @code {
 
@@ -47,13 +146,15 @@
 
     private IEnumerable<Category> categories = Enumerable.Empty<Category>();
 
+    private BlazoredTextEditor? QuillHtml;
+
     protected override async Task OnInitializedAsync()
     {
-        var categories = await CategoryService.GetCategoriesAsync();
+        var categoriesList = await CategoryService.GetCategoriesAsync();
 
-        if(categories?.Any() == true)
+        if (categoriesList?.Any() == true)
         {
-            
+            categories = categoriesList;
         }
     }
 }
