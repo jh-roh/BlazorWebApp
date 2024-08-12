@@ -62,7 +62,10 @@ namespace BlazorWebApp.BlazorServer.Authentication
             {
                claimsPrincipal = GetClaimsFromUser(user);
             }
-            return new AuthenticationState(claimsPrincipal);
+
+            var authState = new AuthenticationState(claimsPrincipal);
+            NotifyAuthenticationStateChanged(Task.FromResult(authState));
+            return authState;
 
         }
 

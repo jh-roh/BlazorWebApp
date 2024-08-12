@@ -46,7 +46,7 @@
                     var editBlogLink = $"/admin/manage-blogs/edit/{post.Id}";
 
                     <tr>
-                        <td>@sno++ </td>
+                        <td>@(sno++) </td>
                         <td>@post.Id</td>
                         <td>@post.Title</td>
                         <td>@post.CategoryName</td>
@@ -67,7 +67,7 @@
                         </td>
                         <td>
                             @* Edit Post link *@
-                            <NavLink class="btn btn-primary btn-sm" href="CREATE_BLOG_POST_LINK">Edit</NavLink>
+                            <NavLink class="btn btn-primary btn-sm" href="@editBlogLink">Edit</NavLink>
 
                         </td>
 

@@ -5,6 +5,7 @@ using BlazorWebApp.BlazorServer.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BlazorWebApp.BlazorServer.Services
@@ -19,8 +20,16 @@ namespace BlazorWebApp.BlazorServer.Services
         }
 
         public async Task<IEnumerable<BlogPost>> GetBlogsAsync() =>
-            await _context.BlogPosts.AsNoTracking().ToListAsync();
+            await _context.BlogPosts
+                          .Include(p => p.Category)
+                          .AsNoTracking().ToListAsync();
 
+        public async Task<BlogSaveModel> GetPostAsync(int blogId) =>
+            await _context.BlogPosts
+                          .Include(p => p.Category)
+                          .AsNoTracking()
+                          .Select(BlogSaveModel.Selector)
+                          .FirstOrDefaultAsync(p => p.Id == blogId);     
 
         public async Task<MethodResult> SaveAsync(BlogSaveModel post, int userId)
         {
@@ -31,7 +40,7 @@ namespace BlazorWebApp.BlazorServer.Services
                 //Creating a new blog post
                 entity.Slug = entity.Slug.Slugify();
                 entity.CreatedOn = DateTime.Now;
-                entity.ModifiedOn = DateTime.Now;   
+                //entity.ModifiedOn = DateTime.Now;   
                 if(entity.IsPublished)
                 {
                     entity.PublicshedOn = DateTime.Now;
@@ -42,6 +51,41 @@ namespace BlazorWebApp.BlazorServer.Services
             else
             {
                 //Updating an existing blog post 
+                BlogPost? bpEntity = await _context.BlogPosts
+                                                   .FirstOrDefaultAsync(bp => bp.Id == post.Id);
+
+                if(bpEntity  is not null)
+                {
+                    var wasEntityPublished = bpEntity.IsPublished;
+
+                    bpEntity = post.Merge(bpEntity);
+
+                    bpEntity.ModifiedOn = DateTime.Now;
+
+                    if(bpEntity.IsPublished)
+                    {
+                        if(wasEntityPublished)
+                        {
+                            //Do nothing
+                        }
+                        else
+                        {
+                            //The blog post was not publishied in the db
+                            //but user published it from the ui now
+                            entity.PublicshedOn = DateTime.Now;
+                        }
+                    }
+                    else if(wasEntityPublished)
+                    {
+                        // This blog post was published earlier in the db
+                        // but user now un-published it from the ui
+                        bpEntity.PublicshedOn = null;
+                    }
+                }
+                else
+                {
+                    return MethodResult.Failure("This blog post does not exist"); 
+                }
             }
 
             try

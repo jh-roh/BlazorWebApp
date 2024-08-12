@@ -1,6 +1,8 @@
 ﻿using BlazorWebApp.BlazorServer.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace BlazorWebApp.BlazorServer.Data
 {
@@ -27,6 +29,7 @@ namespace BlazorWebApp.BlazorServer.Data
 
 #endif
         }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

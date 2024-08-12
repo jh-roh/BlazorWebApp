@@ -112,7 +112,7 @@
                     <p class="text-danger">@errorMessage</p>
                 }
                 <div class="mb-3 d-flex justify-content-between">
-                    <button type="reset" class="btn btn-danger">X Cancel</button>
+                    <NavLink href="/admin/manage-blogs" type="reset" class="btn btn-danger">X Cancel</NavLink>
                     <button type="submit" class="btn btn-success">Save</button>
                 </div>
 
@@ -179,6 +179,20 @@
         if (categoriesList?.Any() == true)
         {
             categories = categoriesList;
+        }
+        if(BlogId > 0)
+        {
+            //We are in edit mode
+            var dbModel = await BlogPostService.GetPostAsync(BlogId);
+
+            if(dbModel is null)
+            {
+                errorMessage = "Invalid url";
+            }
+            else
+            {
+                model = dbModel;
+            }
         }
     }
     private async Task SaveBlogAsync()

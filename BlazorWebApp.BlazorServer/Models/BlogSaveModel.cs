@@ -1,5 +1,7 @@
 ﻿using BlazorWebApp.BlazorServer.Data.Entities;
+using System;
 using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
 
 namespace BlazorWebApp.BlazorServer.Models
 {
@@ -40,5 +42,27 @@ namespace BlazorWebApp.BlazorServer.Models
                 UserId = userId
             };
 
+        public BlogPost Merge(BlogPost entity)
+        {
+            entity.Title = Title;
+            entity.CategoryId = CategoryId;
+            entity.Introduction = Introduction;
+            entity.Content = Content;
+            entity.IsPublished = IsPublished;
+            return entity;
+        }
+
+        public static Expression<Func<BlogPost, BlogSaveModel>> Selector =>
+            bp => new BlogSaveModel()
+            {
+                Id = bp.Id,
+                Title = bp.Title,
+                Slug = bp.Slug,
+                CategoryId = bp.CategoryId,
+                Introduction = bp.Introduction,
+                Content = bp.Content,
+                IsPublished = bp.IsPublished,
+                UserId = bp.UserId
+            };
     }
 }
