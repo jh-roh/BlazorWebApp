@@ -32,7 +32,7 @@ namespace BlazorWebApp.BlazorServer
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddDbContext<BlogContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Blog")));
+            services.AddDbContext<BlogContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Blog")), ServiceLifetime.Transient);
 
             services.AddTransient<UserService>()
                     .AddTransient<CategoryService>()

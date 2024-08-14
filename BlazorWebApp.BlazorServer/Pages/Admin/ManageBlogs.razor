@@ -88,7 +88,7 @@
 
     private async Task LoadBlogPosts()
     {
-        _posts = await BlogService.GetBlogsAsync();
+        _posts = await BlogService.GetPostAsync();
     }
 
     protected override async Task OnInitializedAsync()

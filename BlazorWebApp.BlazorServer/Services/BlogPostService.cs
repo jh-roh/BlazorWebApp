@@ -19,11 +19,20 @@ namespace BlazorWebApp.BlazorServer.Services
             _context = context;
         }
 
-        public async Task<IEnumerable<BlogPost>> GetBlogsAsync() =>
-            await _context.BlogPosts
+        public async Task<IEnumerable<BlogPost>> GetPostAsync(bool publishedOnly = false)
+        {
+            var query =   _context.BlogPosts
                           .Include(p => p.Category)
-                          .AsNoTracking().ToListAsync();
+                          .AsNoTracking();
 
+            if(publishedOnly)
+            {
+                query = query.Where(p => p.IsPublished);
+            }
+
+
+            return await query.ToListAsync(); 
+        }
         public async Task<BlogSaveModel> GetPostAsync(int blogId) =>
             await _context.BlogPosts
                           .Include(p => p.Category)
