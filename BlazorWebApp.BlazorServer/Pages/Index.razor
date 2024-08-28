@@ -8,7 +8,7 @@
         <div class="col-sm-9">
             <h3>Latest Posts</h3>
             <hr/>
-            @if(posts.Any())
+            @if(!posts.Any())
             {
                 <div class="d-flex justify-content-center flex-column align-items-center" style="min-height: 250px">
                     <h3>No blog posts found</h3>
@@ -21,6 +21,39 @@
                         </NotAuthorized>
                     </AuthorizeView>
                 </div>
+            }
+            else
+            {
+                <ul class="list-unstyled">
+                    @foreach(var post in posts)
+                    {
+                        var categoryTitle = $"{post.CategoryName ?? "Unknown"} Blog Posts";
+
+                        <li class="mb-3">
+                            <div class="row">
+                                <div class="col-sm-2 bg-primary rounded d-flex justify-content-center align-items-center">
+                                    <label class="text-uppercase text-white" >@post.Title.Substring(0,2)</label>
+                                </div>
+                                <div class="col-sm-10">
+                                    <h2>
+                                        <NavLink href="BLOG_POST_DETAIL_PAGE" class="text-decoration-none test-dark font-smal" title="@post.Title">@post.Title</NavLink>
+                                    </h2>
+                                    <small>
+                                        <label>
+                                            <NavLink href="CATEGORY_BLOG_POSTS" class="text-decoration-none" title="">@post.Category.Name</NavLink>
+                                        </label>
+                                        <label>
+                                            @(post.PublicshedOn?.ToShortDateString() ?? "No Date")
+                                        </label>
+                                    </small>
+                                    <p class="font-medium">@post.Introduction</p>
+                                </div>
+                            </div>
+                        </li>
+
+                    }
+                </ul>
+                
             }
         </div>
         <div class="col-sm-3">
